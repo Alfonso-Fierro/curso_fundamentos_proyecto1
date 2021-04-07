@@ -1,0 +1,111 @@
+import java.util.Scanner;
+public class PrincipalP
+{
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Usuario, ingrese la cantidad de pisos y la cantidad de espacios");
+        int pisos= scan.nextInt();
+        int espacios= scan.nextInt();
+        
+      
+        //Implemente el atributo de clase “vehiculos” (arreglo de dos dimensiones) usando la clase Vehiculos. El tamaño está definido por lo que haya ingresado el usuario.
+        //Implemente el atributo de clase “sensores” (arreglo de dos dimensiones) usando la clase Sensor. El tamaño está definido por lo que haya ingresado el usuario.
+        Vehiculo.Vehiculo = new Vehiculo[espacios][pisos];
+        Sensor.sensores = new Sensor[espacios][pisos];
+        
+        Vehiculo.tamaño = espacios*pisos;
+        System.out.println("Ingrese un número del 1 al 7 o 0 para salir.");        
+        int num= scan.nextInt();
+        while(num!=0){
+          switch(num){
+            case 1:
+            System.out.println(Sensor.sensorLibre());
+            break;
+            
+            case 2:
+            System.out.println("Ingrese el piso y el espacio");
+            int piso= scan.nextInt();
+            int espacio= scan.nextInt();
+                if(Vehiculo.Vehiculo[espacio][piso]!=null){
+                    System.out.println("Parqueadero ocupado, no se puede ejercer esta acción"); 
+                }else if(Vehiculo.Vehiculo[espacio][piso]==null){
+                    System.out.println("Ingrese placa, marca y color (En ese orden)");
+                    String placa= scan.next();
+                    String marca= scan.next();
+                    String color= scan.next();
+                    Vehiculo vehiculo = new Vehiculo();
+                    Sensor sensor= new Sensor();
+                    vehiculo.setPlaca(placa);
+                    vehiculo.setMarca(marca);
+                    vehiculo.setColor(color);
+                    sensor.setEstado(1);
+                    sensor.sensores[espacio][piso]=sensor;
+                    vehiculo.cantidad++;
+                    System.out.println(vehiculo.toString());
+                    vehiculo.Vehiculo[espacio][piso]=vehiculo;
+                }
+            break;
+               
+            case 3:
+            System.out.println("Ingrese el piso y el espacio");
+            int piso2= scan.nextInt();
+            int espacio2= scan.nextInt();
+            if(Vehiculo.Vehiculo[espacio2][piso2]!=null){
+                    System.out.println("Parqueadero ocupado, no se puede ejercer esta acción."); 
+                }else if(Vehiculo.Vehiculo[espacio2][piso2]==null){
+                    System.out.println("Ingrese placa, marca, color y valor comercial (En ese orden).");
+                    String placa2= scan.next();
+                    String marca2= scan.next();
+                    String color2= scan.next();
+                    int valor= scan.nextInt();
+                    Vehiculo vehiculo = new Vehiculo();
+                    Sensor sensor= new Sensor();
+                    vehiculo.setPlaca(placa2);
+                    vehiculo.setMarca(marca2);
+                    vehiculo.setColor(color2);
+                    vehiculo.setValor(valor);
+                    sensor.setEstado(1);
+                    sensor.sensores[espacio2][piso2]=sensor;
+                    vehiculo.cantidad++;
+                    System.out.println(vehiculo.toString());
+                    vehiculo.Vehiculo[espacio2][piso2]=vehiculo;
+                }
+            break;
+            
+            case 4: 
+            System.out.println("La información de los vehiculos es: " + Vehiculo.toStringVehiculos());
+            break;
+            
+            case 5:
+            System.out.println("La cantidad de vehiculos es: " + Vehiculo.cantidadVehiculos());
+            break;
+            
+            case 6:
+            System.out.println("Ingrese el sensor del que desea saber el estado. 1 es ocupado, 0 es libre");
+            int piso3= scan.nextInt();
+            int espacio3= scan.nextInt();
+            System.out.println("El estado del sensor es: "+ Sensor.sensores[espacio3][piso3].getEstado());
+            break;
+            
+            case 7:
+            System.out.println(Sensor.sensoresEstado());
+            break;
+            
+            default:
+            System.out.println("Comando incorrecto");
+            break;
+            
+            case 8:
+            System.out.println("Ingrese el color");
+            String colores= scan.next();
+            System.out.println(Vehiculo.VehiculosColor(colores));
+            break;
+            
+            case 9:
+            break;
+            }
+          System.out.println("Ingrese un número del 1 al 7 o 0 para salir.");        
+          num= scan.nextInt();
+        } System.out.println("Saliendo...");
+    }
+}
