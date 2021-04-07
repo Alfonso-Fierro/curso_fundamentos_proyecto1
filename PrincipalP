@@ -1,3 +1,7 @@
+/**
+ * Clase principal Proyecto#1
+ * @SaraGV
+ */
 import java.util.Scanner;
 public class PrincipalP
 {
