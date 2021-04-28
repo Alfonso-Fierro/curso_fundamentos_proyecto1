@@ -85,7 +85,7 @@ public class Principal{
                     System.out.println("Valores no reconocidos, no se puede ejercer esta acción.");
                     break;
                 }
-                else if(Vehiculo.vehiculos[espacio2][piso2] != Vehiculo.filler){
+                if(Vehiculo.vehiculos[espacio2][piso2] != Vehiculo.filler){
                     System.out.println("Parqueadero ocupado, no se puede ejercer esta acción."); 
                 }else if(Vehiculo.vehiculos[espacio2][piso2]== Vehiculo.filler){
                     System.out.println("Ingrese la placa del auto:");
@@ -125,7 +125,7 @@ public class Principal{
                  if((piso3 > pisos)||(espacio3 > espacios)){
                     System.out.println("Valores no reconocidos, no se puede ejercer esta acción.");
                  }else{
-                  System.out.println("El estado del sensor es: \n"+ Sensor.sensores[espacio3][piso3].getEstado());
+                     System.out.println("El estado del sensor es: \n"+ Sensor.sensores[espacio3][piso3].getEstado());
                  }
                 break;
  
