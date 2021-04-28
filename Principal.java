@@ -69,18 +69,11 @@ public class Principal{
                     String marca= scan.next();
                     System.out.println("Ingrese el color del auto:");
                     String color= scan.next();
-                    Vehiculo vehiculo = new Vehiculo();
-                    Sensor sensor= new Sensor();
-                    vehiculo.setPlaca(placa);
-                    vehiculo.setMarca(marca);
-                    vehiculo.setColor(color);
-                    vehiculo.setValor(30000000);
-                    sensor.setEstado(1);
+                    Vehiculo vehiculo = new Vehiculo(placa, marca, color);
+                    Sensor sensor= new Sensor(1);
                     sensor.sensores[espacio][piso]=sensor;
-                    vehiculo.cantidad++;
                     System.out.println(vehiculo.toString());
                     vehiculo.vehiculos[espacio][piso]=vehiculo;
- 
                 }
                 break;
  
@@ -154,7 +147,7 @@ public class Principal{
  
                 System.out.println("A continuación, la información de los vehiculos ordenados segun su valor comercial:");
                 System.out.println("---------------------------------------------------------------------");
-                Vehiculo.toStringVehiculos(Vehiculo.valorOrdenado());
+                System.out.println(Vehiculo.toStringVehiculos(Vehiculo.valorOrdenado()));
                 break;
                 }
             System.out.println(

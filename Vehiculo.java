@@ -64,15 +64,19 @@ public class Vehiculo{
     public String getValorString(){
         return String.valueOf(this.valorComercial);
     }
-    public static void toStringVehiculos(Vehiculo ref){
-        System.out.println(" Placa: "+ ref.getPlaca() + ", Marca: " + ref.getMarca()
-                    + ", Color: " + ref.getColor() + ", Valor comercial: " + ref.getValorString() + "||");
+    public String toStringVehiculos(Vehiculo ref){
+        String unitValue =
+        " Placa: "+ ref.getPlaca() + ", Marca: " + ref.getMarca() + ", Color: " + ref.getColor()
+        + ", Valor comercial: " + ref.getValorString() + "||";
+        return unitValue;            
     }
-    public static void toStringVehiculos(Vehiculo[] ref){
+    public static String toStringVehiculos(Vehiculo[] ref){
+        String orderValue = "";
         for(int i=0; i<ref.length; i++){            
-            System.out.println(" Placa: "+ ref[i].getPlaca() + ", Marca: " + ref[i].getMarca()
-            + ", Color: " + ref[i].getColor() + ", Valor comercial: " + ref[i].getValorString() + "||");            
-        }  
+            orderValue += " Placa: "+ ref[i].getPlaca() + ", Marca: " + ref[i].getMarca()
+            + ", Color: " + ref[i].getColor() + ", Valor comercial: " + ref[i].getValorString() + "||" + "\n";            
+        }
+        return orderValue;
     }
     public static String toStringVehiculos(){
         String g="";
@@ -107,7 +111,7 @@ public class Vehiculo{
         return ordenTemporal;
     }
     public static Vehiculo[] vehiculoToArray(){
-        //ref es la misma matriz del parqueadero
+        //misma matriz del parqueadero
         int c = 0;
         for(int i=0; i<Vehiculo.vehiculos.length; i++){
             for(int j=0; j<Vehiculo.vehiculos[i].length; j++){
