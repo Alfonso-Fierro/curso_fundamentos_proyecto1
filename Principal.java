@@ -96,22 +96,16 @@ public class Principal{
                     String color2= scan.next();
                     System.out.println("Ingrese el valor comercial del auto:");
                     int valor= scan.nextInt();
-                    Vehiculo vehiculo = new Vehiculo();
-                    Sensor sensor= new Sensor();
-                    vehiculo.setPlaca(placa2);
-                    vehiculo.setMarca(marca2);
-                    vehiculo.setColor(color2);
-                    vehiculo.setValor(valor);
-                    sensor.setEstado(1);
+                    Vehiculo vehiculo = new Vehiculo(placa2,marca2,color2,valor);
+                    Sensor sensor= new Sensor(1);
                     sensor.sensores[espacio2][piso2]=sensor;
-                    vehiculo.cantidad++;
                     System.out.println(vehiculo.toString());
                     Vehiculo.vehiculos[espacio2][piso2]=vehiculo;
                 }
                 break;
  
                 case 4: 
-                System.out.println("La información de los vehiculos ingresados es: " + Vehiculo.toStringVehiculos());
+                System.out.println("La información de los vehiculos ingresados es: "+ "\n" + Vehiculo.toStringVehiculos());
                 break;
  
                 case 5:
