@@ -23,28 +23,28 @@ public class Principal{
         }
  
         System.out.println(
-              "†-----------------------------------------------------------------------------------------------------†\n"
-            + "| COMANDO  0 | ⇒ |  Terminar ejecucion                                                               |\n"
-            + "†-----------------------------------------------------------------------------------------------------†\n"
-            + "| COMANDO  1 | ⇒ |  Indicar espacios disponibles                                                     |\n"
-            + "†-----------------------------------------------------------------------------------------------------†\n"
-            + "| COMANDO  2 | ⇒ |  Ingresar PLACA-MARCA-COLOR del vehiculo                                          |\n"
-            + "†-----------------------------------------------------------------------------------------------------†\n"
-            + "| COMANDO  3 | ⇒ |  Ingresar PLACA-MARCA-COLOR-PRECIO del vehiculo                                   |\n"
-            + "†-----------------------------------------------------------------------------------------------------†\n"
-            + "| COMANDO  4 | ⇒ |  Mostrar la informacion de los vehiculos ingresados en el sistema                 |\n"
-            + "†-----------------------------------------------------------------------------------------------------†\n"
-            + "| COMANDO  5 | ⇒ |  Mostrar la cantidad de vehiculos ingresados en el sistema                        |\n"
-            + "†-----------------------------------------------------------------------------------------------------†\n"
-            + "| COMANDO  6 | ⇒ |  Verificar el estado de un espacio                                                |\n"
-            + "†-----------------------------------------------------------------------------------------------------†\n"
-            + "| COMANDO  7 | ⇒ |  Mostrar el estado de todos los espacios                                          |\n"
-            + "†-----------------------------------------------------------------------------------------------------†\n"
-            + "| COMANDO  8 | ⇒ |  Presentar ordenadamente la informacion de los vehiculos con un color determinado |\n"
-            + "†-----------------------------------------------------------------------------------------------------†\n"
-            + "| COMANDO  9 | ⇒ |  Presentar la informacion de los vehiculos ordenados por su valor comercial       |\n"
-            + "†-----------------------------------------------------------------------------------------------------†\n"
-            + "Accion: ");          
+          "†-----------------------------------------------------------------------------------------------------†\n"
+        + "| COMANDO  0 | ⇒ |  Terminar ejecucion                                                               |\n"
+        + "†-----------------------------------------------------------------------------------------------------†\n"
+        + "| COMANDO  1 | ⇒ |  Indicar espacios disponibles                                                     |\n"
+        + "†-----------------------------------------------------------------------------------------------------†\n"
+        + "| COMANDO  2 | ⇒ |  Ingresar PLACA-MARCA-COLOR del vehiculo                                          |\n"
+        + "†-----------------------------------------------------------------------------------------------------†\n"
+        + "| COMANDO  3 | ⇒ |  Ingresar PLACA-MARCA-COLOR-PRECIO del vehiculo                                   |\n"
+        + "†-----------------------------------------------------------------------------------------------------†\n"
+        + "| COMANDO  4 | ⇒ |  Mostrar la informacion de los vehiculos ingresados en el sistema                 |\n"
+        + "†-----------------------------------------------------------------------------------------------------†\n"
+        + "| COMANDO  5 | ⇒ |  Mostrar la cantidad de vehiculos ingresados en el sistema                        |\n"
+        + "†-----------------------------------------------------------------------------------------------------†\n"
+        + "| COMANDO  6 | ⇒ |  Verificar el estado de un espacio                                                |\n"
+        + "†-----------------------------------------------------------------------------------------------------†\n"
+        + "| COMANDO  7 | ⇒ |  Mostrar el estado de todos los espacios                                          |\n"
+        + "†-----------------------------------------------------------------------------------------------------†\n"
+        + "| COMANDO  8 | ⇒ |  Presentar ordenadamente la informacion de los vehiculos con un color determinado |\n"
+        + "†-----------------------------------------------------------------------------------------------------†\n"
+        + "| COMANDO  9 | ⇒ |  Presentar la informacion de los vehiculos ordenados por su valor comercial       |\n"
+        + "†-----------------------------------------------------------------------------------------------------†\n"
+        + "Accion: ");          
         int num= scan.nextInt();
         while(num!=0){
             switch(num){
@@ -53,8 +53,9 @@ public class Principal{
                 break;
  
                 case 2:
-                System.out.println("Ingrese el piso y el espacio donde desea ubicar el vehiculo:");
+                System.out.println("Ingrese el piso donde desea ubicar el vehiculo:");
                 int piso= scan.nextInt()-1;
+                System.out.println("Ingrese el espacio donde desea ubicar el vehiculo:");
                 int espacio= scan.nextInt()-1;
                 if((piso > pisos)||(espacio > espacios)){
                     System.out.println("Valores no reconocidos, no se puede ejercer esta acción.");
@@ -78,8 +79,9 @@ public class Principal{
                 break;
  
                 case 3:
-                System.out.println("Ingrese el piso y el espacio donde desea ubicar el vehiculo:");
+                System.out.println("Ingrese el piso donde desea ubicar el vehiculo:");
                 int piso2= scan.nextInt()-1;
+                System.out.println("Ingrese el espacio donde desea ubicar el vehiculo:");
                 int espacio2= scan.nextInt()-1;
                 if((piso2 > pisos)||(espacio2 > espacios)){
                     System.out.println("Valores no reconocidos, no se puede ejercer esta acción.");
@@ -114,13 +116,13 @@ public class Principal{
  
                 case 6:
                 System.out.println("Ingrese el piso y el espacio del que desea conocer el estado.\n 1 es ocupado, 0 es libre:");
-                int piso3= scan.nextInt();
-                int espacio3= scan.nextInt();
-                 if((piso3 > pisos)||(espacio3 > espacios)){
+                int piso3= scan.nextInt()-1;
+                int espacio3= scan.nextInt()-1;
+                if((piso3 > pisos)||(espacio3 > espacios)){
                     System.out.println("Valores no reconocidos, no se puede ejercer esta acción.");
-                 }else{
-                     System.out.println("El estado del sensor es: \n"+ Sensor.sensores[espacio3][piso3].getEstado());
-                 }
+                }else{
+                    System.out.println("El estado del sensor es: \n"+ Sensor.sensores[espacio3][piso3].getEstado());
+                }
                 break;
  
                 case 7:
@@ -145,7 +147,7 @@ public class Principal{
                 break;
                 }
             System.out.println(
-              "†-----------------------------------------------------------------------------------------------------†\n"
+            "†-----------------------------------------------------------------------------------------------------†\n"
             + "| COMANDO  0 | ⇒ |  Terminar ejecucion                                                               |\n"
             + "†-----------------------------------------------------------------------------------------------------†\n"
             + "| COMANDO  1 | ⇒ |  Indicar espacios disponibles                                                     |\n"

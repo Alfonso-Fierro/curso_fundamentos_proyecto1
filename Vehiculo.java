@@ -147,7 +147,10 @@ public class Vehiculo{
                     + vehiculos[i][j].color + ", Valor comercial: " + vehiculos[i][j].valorComercial + "||\n";     
                 }
             }
-        }
+       }
+       if(text == ""){
+           text+= "No se han encontrado vehiculos con este color..."+"\n";     
+       }
         return text; 
     }
 }
