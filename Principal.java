@@ -88,7 +88,7 @@ public class Principal{
                     break;
                 }
                 if(Vehiculo.vehiculos[espacio2][piso2] != Vehiculo.filler){
-                    System.out.println("Parqueadero ocupado, no se puede ejercer esta acción."); 
+                    System.out.println("Parqueadero ocupado, no se puede ejecutar esta acción."); 
                 }else if(Vehiculo.vehiculos[espacio2][piso2]== Vehiculo.filler){
                     System.out.println("Ingrese la placa del auto:");
                     String placa2= scan.next();
