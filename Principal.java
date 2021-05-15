@@ -3,26 +3,20 @@ public class Principal{
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         System.out.println("¡Bienvenido!");
-        System.out.println("Ingrese la cantidad de pisos:");
+        System.out.print("Ingrese la cantidad de pisos:");
         int pisos= scan.nextInt();
-        System.out.println("Ingrese la cantidad de espacios:");
+        System.out.print("Ingrese la cantidad de espacios:");
         int espacios= scan.nextInt();
         Vehiculo.vehiculos = new Vehiculo[espacios][pisos];
         Sensor.sensores = new Sensor[espacios][pisos];
         Vehiculo.tamano = espacios*pisos;
-        for(int i=0; i<Vehiculo.vehiculos.length; i++){
-            for(int j=0; j<Vehiculo.vehiculos[i].length; j++){
-                Vehiculo.vehiculos[i][j] = Vehiculo.filler;
-            }
-        }
         for(int i=0; i<Sensor.sensores.length; i++){
             for(int j=0; j<Sensor.sensores[i].length; j++){
-                Sensor n = new Sensor(0);
-                Sensor.sensores[i][j] = n;
+                Sensor.sensores[i][j] = new Sensor(0);
             }
         }
  
-        System.out.println(
+        System.out.print(
           "†-----------------------------------------------------------------------------------------------------†\n"
         + "| COMANDO  0 | ⇒ |  Terminar ejecucion                                                               |\n"
         + "†-----------------------------------------------------------------------------------------------------†\n"
@@ -53,17 +47,18 @@ public class Principal{
                 break;
  
                 case 2:
-                System.out.println("Ingrese el piso donde desea ubicar el vehiculo:");
+                System.out.print("Ingrese el piso donde desea ubicar el vehiculo:");
                 int piso= scan.nextInt()-1;
-                System.out.println("Ingrese el espacio donde desea ubicar el vehiculo:");
+                System.out.print("Ingrese el espacio donde desea ubicar el vehiculo:");
                 int espacio= scan.nextInt()-1;
                 if((piso > pisos)||(espacio > espacios)){
                     System.out.println("Valores no reconocidos, no se puede ejercer esta acción.");
                     break;
                 }
-                else if(Vehiculo.vehiculos[espacio][piso] != Vehiculo.filler){
-                    System.out.println("Parqueadero ocupado, no se puede ejercer esta acción."); 
-                }else if(Vehiculo.vehiculos[espacio][piso] == Vehiculo.filler){
+                else if(Sensor.sensores[espacio][piso].getEstado() != 0){
+                    System.out.println("Parqueadero ocupado, no se puede ejercer esta acción.");
+                    break;
+                }else {
                     System.out.println("Ingrese la placa del auto:");
                     String placa= scan.next();
                     System.out.println("Ingrese la marca del auto:");
@@ -71,12 +66,11 @@ public class Principal{
                     System.out.println("Ingrese el color del auto:");
                     String color= scan.next();
                     Vehiculo vehiculo = new Vehiculo(placa, marca, color);
-                    Sensor sensor= new Sensor(1);
-                    sensor.sensores[espacio][piso]=sensor;
-                    System.out.println(vehiculo.toString());
+                    Sensor.sensores[espacio][piso]= new Sensor(1);               
                     vehiculo.vehiculos[espacio][piso]=vehiculo;
+                    break;
                 }
-                break;
+                
  
                 case 3:
                 System.out.println("Ingrese el piso donde desea ubicar el vehiculo:");
@@ -87,27 +81,26 @@ public class Principal{
                     System.out.println("Valores no reconocidos, no se puede ejercer esta acción.");
                     break;
                 }
-                if(Vehiculo.vehiculos[espacio2][piso2] != Vehiculo.filler){
+                if(Sensor.sensores[espacio2][piso2].getEstado() != 0){
                     System.out.println("Parqueadero ocupado, no se puede ejecutar esta acción."); 
-                }else if(Vehiculo.vehiculos[espacio2][piso2]== Vehiculo.filler){
-                    System.out.println("Ingrese la placa del auto:");
+                }else {
+                    System.out.print("Ingrese la placa del auto:");
                     String placa2= scan.next();
-                    System.out.println("Ingrese la marca del auto:");
+                    System.out.print("Ingrese la marca del auto:");
                     String marca2= scan.next();
-                    System.out.println("Ingrese el color del auto:");
+                    System.out.print("Ingrese el color del auto:");
                     String color2= scan.next();
-                    System.out.println("Ingrese el valor comercial del auto:");
+                    System.out.print("Ingrese el valor comercial del auto:");
                     int valor= scan.nextInt();
                     Vehiculo vehiculo = new Vehiculo(placa2,marca2,color2,valor);
-                    Sensor sensor= new Sensor(1);
-                    sensor.sensores[espacio2][piso2]=sensor;
-                    System.out.println(vehiculo.toString());
+                    Sensor.sensores[espacio2][piso2]= new Sensor(1);
                     Vehiculo.vehiculos[espacio2][piso2]=vehiculo;
+                    break;
                 }
-                break;
- 
+                
                 case 4: 
-                System.out.println("La información de los vehiculos ingresados es: "+ "\n" + Vehiculo.toStringVehiculos());
+                System.out.println("La información de los vehiculos ingresados es: "+ "\n" +
+                "----------------------------------------------------------------" + "\n" + Vehiculo.toStringVehiculos());
                 break;
  
                 case 5:
@@ -115,13 +108,15 @@ public class Principal{
                 break;
  
                 case 6:
-                System.out.println("Ingrese el piso y el espacio del que desea conocer el estado.\n 1 es ocupado, 0 es libre:");
-                int piso3= scan.nextInt()-1;
-                int espacio3= scan.nextInt()-1;
+                System.out.println("Ingrese el piso y el espacio del que desea conocer el estado: "+ "\n");
+                System.out.print("Piso:");
+                int piso3= scan.nextInt()-1;                
+                System.out.print("Espacio:");
+                int espacio3= scan.nextInt()-1;                
                 if((piso3 > pisos)||(espacio3 > espacios)){
                     System.out.println("Valores no reconocidos, no se puede ejercer esta acción.");
                 }else{
-                    System.out.println("El estado del sensor es: \n"+ Sensor.sensores[espacio3][piso3].getEstado());
+                    System.out.println("El estado del sensor es: \n"+ Sensor.sensores[espacio3][piso3].toString());
                 }
                 break;
  
@@ -134,9 +129,9 @@ public class Principal{
                 break;
  
                 case 8:
-                System.out.println("Ingrese el color de los vehiculos que desea obtener información:");
-                String colores= scan.next();
-                System.out.println(Vehiculo.VehiculosColor(colores));
+                System.out.print("Ingrese el color de los vehiculos que desea obtener información:");
+                String color= scan.next();
+                System.out.println(Vehiculo.VehiculosColor(color));
                 break;
  
                 case 9:
@@ -146,7 +141,7 @@ public class Principal{
                 System.out.println(Vehiculo.toStringVehiculos(Vehiculo.valorOrdenado()));
                 break;
                 }
-            System.out.println(
+            System.out.print(
             "†-----------------------------------------------------------------------------------------------------†\n"
             + "| COMANDO  0 | ⇒ |  Terminar ejecucion                                                               |\n"
             + "†-----------------------------------------------------------------------------------------------------†\n"
