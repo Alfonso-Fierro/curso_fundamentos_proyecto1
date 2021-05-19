@@ -59,11 +59,11 @@ public class Principal{
                     System.out.println("Parqueadero ocupado, no se puede ejercer esta acción.");
                     break;
                 }else {
-                    System.out.println("Ingrese la placa del auto:");
+                    System.out.print("Ingrese la placa del auto:");
                     String placa= scan.next();
-                    System.out.println("Ingrese la marca del auto:");
+                    System.out.print("Ingrese la marca del auto:");
                     String marca= scan.next();
-                    System.out.println("Ingrese el color del auto:");
+                    System.out.print("Ingrese el color del auto:");
                     String color= scan.next();
                     Vehiculo vehiculo = new Vehiculo(placa, marca, color);
                     Sensor.sensores[espacio][piso]= new Sensor(1);               
@@ -73,12 +73,12 @@ public class Principal{
                 
  
                 case 3:
-                System.out.println("Ingrese el piso donde desea ubicar el vehiculo:");
+                System.out.print("Ingrese el piso donde desea ubicar el vehiculo:");
                 int piso2= scan.nextInt()-1;
-                System.out.println("Ingrese el espacio donde desea ubicar el vehiculo:");
+                System.out.print("Ingrese el espacio donde desea ubicar el vehiculo:");
                 int espacio2= scan.nextInt()-1;
                 if((piso2 > pisos)||(espacio2 > espacios)){
-                    System.out.println("Valores no reconocidos, no se puede ejercer esta acción.");
+                    System.out.print("Valores no reconocidos, no se puede ejercer esta acción."+"\n");
                     break;
                 }
                 if(Sensor.sensores[espacio2][piso2].getEstado() != 0){

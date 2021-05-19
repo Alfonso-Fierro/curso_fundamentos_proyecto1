@@ -1,15 +1,17 @@
+import java.util.*;
+import java.time.*;
 public class Vehiculo{   
     //Campos generales del programa
-    public static Vehiculo[][] vehiculos; //Matríz contenedora de los objetos
-    /* El índice de las filas es el piso y el índice de las columnas es el espacio.
-     * se debe poder parquear en cualquier piso, en cualquier espacio (restricciones acomodadas)
-       */
+    public static Vehiculo[][] vehiculos; 
     public static int tamano; //cantidad de espacios totales en el edificio
     public static int cantidad = 0;//contador de Autos dentro del parqueadero
+    public static int cobro;
     //Atributos de caracterización para los objetos
     private String placa; //Placa del auto  
     private String marca; //Marca del auto 
     private String color; //Color del auto
+    private String clase; //Clase de Vehiculo
+    private LocalDateTime entrada; 
     private int valorComercial; //Precio del auto    
     public Vehiculo(){
         //constructor vacío, sin función.
@@ -17,6 +19,8 @@ public class Vehiculo{
     public Vehiculo(String p, String m, String c){
         //constructor de un auto cuyo valor comercial es desconocido.
         this(p,m,c,30000000);
+        this.setIngreso();
+        this.setTipo(clase);
     }
     public Vehiculo(String p, String m, String c, int vC){
         //constructor de un auto cuyo valor comercial es conocido.
@@ -24,6 +28,8 @@ public class Vehiculo{
         this.setMarca(m);
         this.setColor(c);
         this.setValor(vC);
+        this.setIngreso();
+        this.setTipo(clase);
         Vehiculo.cantidad++;
     }
     //Métodos set&get (características por individuo)
@@ -39,6 +45,16 @@ public class Vehiculo{
     public void setValor(int vC){
         this.valorComercial = vC;
     }
+    public void setTipo(String tipo){
+        this.clase = tipo;
+    }    
+    public void setIngreso(){
+        final LocalDateTime ingreso = LocalDateTime.now();
+        this.entrada = ingreso;
+    }
+    public LocalDateTime getIngreso(){
+        return this.entrada;
+    }
     public String getPlaca(){
         return this.placa;
     }
@@ -51,10 +67,16 @@ public class Vehiculo{
     public int getValor(){
         return valorComercial;
     }
+    public int getCobro(){
+        return this.cobro;
+    }
+    public String getTipo(){
+        return this.clase;
+    }
     public String toString(){
         String unitValue =
         " Placa: "+ this.getPlaca() + ", Marca: " + this.getMarca() + ", Color: " + this.getColor()
-        + ", Valor comercial: " + this.getValor() + "||" + "\n";
+        + ", Valor comercial: " + this.getValor() + ", Tipo de vehículo: " + this.getTipo() + "||"+"\n";
         return unitValue;            
     }
     public static String toStringVehiculos(Vehiculo[] ref){
@@ -137,5 +159,15 @@ public class Vehiculo{
            text+= "No se han encontrado vehiculos con este color..."+"\n";     
        }
         return text; 
+    }
+    public static LocalDateTime horaActual(){
+        return LocalDateTime.now();
+    } 
+    public String salida(int x, int y){
+        Vehiculo mov = Vehiculo.vehiculos[x-1][y-1];
+        long pago = Duration.between(horaActual(), mov.getIngreso()).toMinutes()*this.getCobro();
+        mov = null;
+        Sensor.sensores[x-1][y-1].setEstado(0);
+        return "Total a pagar $"+pago;
     }
 }
