@@ -163,9 +163,9 @@ public class Vehiculo{
     public static LocalDateTime horaActual(){
         return LocalDateTime.now();
     } 
-    public String salida(int x, int y){
+    public static String salida(int x, int y){
         Vehiculo mov = Vehiculo.vehiculos[x-1][y-1];
-        long pago = Duration.between(horaActual(), mov.getIngreso()).toMinutes()*this.getCobro();
+        long pago = Duration.between(horaActual(), mov.getIngreso()).toMinutes()*mov.getCobro();
         mov = null;
         Sensor.sensores[x-1][y-1].setEstado(0);
         return "Total a pagar $"+pago;
