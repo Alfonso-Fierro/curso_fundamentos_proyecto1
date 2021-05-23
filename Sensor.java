@@ -27,7 +27,7 @@ public class Sensor
        for(int i=0; i<sensores.length; i++){
            for(int j=0; j<sensores[i].length; j++){
                if(Sensor.sensores[i][j].getEstado() == 0){
-                   libre+= "Libre --> piso: "+ (j+1) + " espacio: " + (i+1) + "\n";   
+                   libre+= "Libre --> piso: "+ (i+1) + " espacio: " + (j+1) + "\n";   
                }
           }
        }
@@ -43,10 +43,10 @@ public class Sensor
             for(int j=0; j<sensores[i].length; j++){
                 if(sensores[i][j].getEstado() == 0){
                     sen="Libre";
-                    info+= sen + "--> piso: "+ (j+1) + " espacio:" + (i+1) + "\n";   
+                    info+= sen + "--> piso: "+ (i+1) + " espacio:" + (j+1) + "\n";   
                 }else if(sensores[i][j].getEstado() != 0){
                     sen="Ocupado";
-                    info+= sen + "--> piso: "+ (j+1) + " espacio:" + (i+1) + "\n";   
+                    info+= sen + "--> piso: "+ (i+1) + " espacio:" + (j+1) + "\n";   
                 }
             }
         }

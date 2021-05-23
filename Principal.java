@@ -1,11 +1,12 @@
 import java.util.*;
+import java.io.*;
 public class Principal{
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         System.out.println("¡Bienvenido!");
-        System.out.print("Ingrese la cantidad de pisos:");
+        System.out.print("Ingrese la cantidad de pisos: ");
         int pisos= scan.nextInt();
-        System.out.print("Ingrese la cantidad de espacios:");
+        System.out.print("Ingrese la cantidad de espacios: ");
         int espacios= scan.nextInt();
         Vehiculo.vehiculos = new Vehiculo[espacios][pisos];
         Sensor.sensores = new Sensor[espacios][pisos];
@@ -16,29 +17,38 @@ public class Principal{
             }
         }
  
-        System.out.print(
-          "†-----------------------------------------------------------------------------------------------------†\n"
-        + "| COMANDO  0 | ⇒ |  Terminar ejecucion                                                               |\n"
-        + "†-----------------------------------------------------------------------------------------------------†\n"
-        + "| COMANDO  1 | ⇒ |  Indicar espacios disponibles                                                     |\n"
-        + "†-----------------------------------------------------------------------------------------------------†\n"
-        + "| COMANDO  2 | ⇒ |  Ingresar PLACA-MARCA-COLOR del vehiculo                                          |\n"
-        + "†-----------------------------------------------------------------------------------------------------†\n"
-        + "| COMANDO  3 | ⇒ |  Ingresar PLACA-MARCA-COLOR-PRECIO del vehiculo                                   |\n"
-        + "†-----------------------------------------------------------------------------------------------------†\n"
-        + "| COMANDO  4 | ⇒ |  Mostrar la informacion de los vehiculos ingresados en el sistema                 |\n"
-        + "†-----------------------------------------------------------------------------------------------------†\n"
-        + "| COMANDO  5 | ⇒ |  Mostrar la cantidad de vehiculos ingresados en el sistema                        |\n"
-        + "†-----------------------------------------------------------------------------------------------------†\n"
-        + "| COMANDO  6 | ⇒ |  Verificar el estado de un espacio                                                |\n"
-        + "†-----------------------------------------------------------------------------------------------------†\n"
-        + "| COMANDO  7 | ⇒ |  Mostrar el estado de todos los espacios                                          |\n"
-        + "†-----------------------------------------------------------------------------------------------------†\n"
-        + "| COMANDO  8 | ⇒ |  Presentar ordenadamente la informacion de los vehiculos con un color determinado |\n"
-        + "†-----------------------------------------------------------------------------------------------------†\n"
-        + "| COMANDO  9 | ⇒ |  Presentar la informacion de los vehiculos ordenados por su valor comercial       |\n"
-        + "†-----------------------------------------------------------------------------------------------------†\n"
-        + "Accion: ");          
+        System.out.print("Ingrese el valor del parqueadero para motos por hora: ");
+        int valorMotos= scan.nextInt();
+        System.out.print("Ingrese el valor del parqueadero para carros por hora: ");
+        int valorCarros= scan.nextInt();
+ 
+                    System.out.print(
+            "†-----------------------------------------------------------------------------------------------------†\n"
+            + "| COMANDO  0 | ⇒ |  Terminar ejecucion                                                               |\n"
+            + "†-----------------------------------------------------------------------------------------------------†\n"
+            + "| COMANDO  1 | ⇒ |  Indicar espacios disponibles                                                     |\n"
+            + "†-----------------------------------------------------------------------------------------------------†\n"
+            + "| COMANDO  2 | ⇒ |  Ingresar PLACA-MARCA-COLOR del vehiculo                                          |\n"
+            + "†-----------------------------------------------------------------------------------------------------†\n"
+            + "| COMANDO  3 | ⇒ |  Ingresar PLACA-MARCA-COLOR-PRECIO del vehiculo                                   |\n"
+            + "†-----------------------------------------------------------------------------------------------------†\n"
+            + "| COMANDO  4 | ⇒ |  Mostrar la informacion de los vehiculos ingresados en el sistema                 |\n"
+            + "†-----------------------------------------------------------------------------------------------------†\n"
+            + "| COMANDO  5 | ⇒ |  Mostrar la cantidad de vehiculos ingresados en el sistema                        |\n"
+            + "†-----------------------------------------------------------------------------------------------------†\n"
+            + "| COMANDO  6 | ⇒ |  Verificar el estado de un espacio                                                |\n"
+            + "†-----------------------------------------------------------------------------------------------------†\n"
+            + "| COMANDO  7 | ⇒ |  Mostrar el estado de todos los espacios                                          |\n"
+            + "†-----------------------------------------------------------------------------------------------------†\n"
+            + "| COMANDO  8 | ⇒ |  Presentar ordenadamente la informacion de los vehiculos con un color determinado |\n"
+            + "†-----------------------------------------------------------------------------------------------------†\n"
+            + "| COMANDO  9 | ⇒ |  Presentar la informacion de los vehiculos ordenados por su valor comercial       |\n"
+            + "†-----------------------------------------------------------------------------------------------------†\n"
+            + "| COMANDO 10 | ⇒ |  Retirar vehiculo de un espacio determinado                                       |\n"
+            + "†-----------------------------------------------------------------------------------------------------†\n"
+            + "| COMANDO 11 | ⇒ |  Exportar fichero con la informacion de los vehiculos ingresados en el sistema    |\n"
+            + "†-----------------------------------------------------------------------------------------------------†\n"
+            + "Accion: ");         
         int num= scan.nextInt();
         while(num!=0){
             switch(num){
@@ -47,57 +57,127 @@ public class Principal{
                 break;
  
                 case 2:
-                System.out.print("Ingrese el piso donde desea ubicar el vehiculo:");
+                System.out.println("¿Qué vehiculo desea ingresar?");
+                System.out.println( "1. Carro");
+                System.out.print( "2. Moto ");
+                int numClase = scan.nextInt();
+             if(numClase == 1){                
+                System.out.print("Ingrese el piso donde desea ubicar el carro: ");
                 int piso= scan.nextInt()-1;
-                System.out.print("Ingrese el espacio donde desea ubicar el vehiculo:");
+                System.out.print("Ingrese el espacio donde desea ubicar el carro: ");
                 int espacio= scan.nextInt()-1;
-                if((piso > pisos)||(espacio > espacios)){
+                   if((piso > pisos)||(espacio > espacios)){
                     System.out.println("Valores no reconocidos, no se puede ejercer esta acción.");
                     break;
-                }
-                else if(Sensor.sensores[espacio][piso].getEstado() != 0){
+                   }
+                    else if(Sensor.sensores[espacio][piso].getEstado() != 0){
                     System.out.println("Parqueadero ocupado, no se puede ejercer esta acción.");
                     break;
-                }else {
-                    System.out.print("Ingrese la placa del auto:");
+                   }else {
+                    System.out.print("Ingrese la placa del carro: ");
                     String placa= scan.next();
-                    System.out.print("Ingrese la marca del auto:");
+                    System.out.print("Ingrese la marca del carro: ");
                     String marca= scan.next();
-                    System.out.print("Ingrese el color del auto:");
+                    System.out.print("Ingrese el color del carro: ");
                     String color= scan.next();
-                    Vehiculo vehiculo = new Vehiculo(placa, marca, color);
-                    Sensor.sensores[espacio][piso]= new Sensor(1);               
-                    vehiculo.vehiculos[espacio][piso]=vehiculo;
+                    Vehiculo vehiculo= new Carro(placa, marca, color, valorCarros);
+                    Sensor.sensores[piso][espacio]= new Sensor(1);               
+                    vehiculo.vehiculos[piso][espacio]=vehiculo;
+                    System.out.println(Vehiculo.horaActual());
+                    break;
+                   }
+             }else if(numClase == 2){
+                  System.out.print("Ingrese el piso donde desea ubicar la moto: ");
+                  int piso= scan.nextInt()-1;
+                  System.out.print("Ingrese el espacio donde desea ubicar la moto: ");
+                  int espacio= scan.nextInt()-1;
+                   if((piso > pisos)||(espacio > espacios)){
+                    System.out.println("Valores no reconocidos, no se puede ejercer esta acción.");
+                    break;
+                   }
+                    else if(Sensor.sensores[piso][espacio].getEstado() != 0){
+                    System.out.println("Parqueadero ocupado, no se puede ejercer esta acción.");
+                    break;
+                   }else {
+                    System.out.print("Ingrese la placa de la moto: ");
+                    String placa= scan.next();
+                    System.out.print("Ingrese la marca de la moto: ");
+                    String marca= scan.next();
+                    System.out.print("Ingrese el color de la moto: ");
+                    String color= scan.next();
+                    Vehiculo vehiculo = new Moto(placa, marca, color, valorMotos);
+                    Sensor.sensores[piso][espacio]= new Sensor(1);               
+                    vehiculo.vehiculos[piso][espacio]=vehiculo;
+                    System.out.println(Vehiculo.horaActual());
                     break;
                 }
-                
+             }else{
+                System.out.println("Valores no reconocidos, no se puede ejercer esta acción.");
+             }
  
                 case 3:
-                System.out.print("Ingrese el piso donde desea ubicar el vehiculo:");
+                System.out.println("¿Qué vehiculo desea ingresar?");
+                System.out.println( "1. Carro");
+                System.out.println( "2. Moto");
+                int numClase2 = scan.nextInt();
+             if(numClase2 == 1){                
+                System.out.print("Ingrese el piso donde desea ubicar el carro: ");
                 int piso2= scan.nextInt()-1;
-                System.out.print("Ingrese el espacio donde desea ubicar el vehiculo:");
+                System.out.print("Ingrese el espacio donde desea ubicar el carro: ");
                 int espacio2= scan.nextInt()-1;
-                if((piso2 > pisos)||(espacio2 > espacios)){
-                    System.out.print("Valores no reconocidos, no se puede ejercer esta acción."+"\n");
+                   if((piso2 > pisos)||(espacio2 > espacios)){
+                    System.out.println("Valores no reconocidos, no se puede ejercer esta acción.");
                     break;
-                }
-                if(Sensor.sensores[espacio2][piso2].getEstado() != 0){
-                    System.out.println("Parqueadero ocupado, no se puede ejecutar esta acción."); 
-                }else {
-                    System.out.print("Ingrese la placa del auto:");
+                   }
+                    else if(Sensor.sensores[piso2][espacio2].getEstado() != 0){
+                    System.out.println("Parqueadero ocupado, no se puede ejercer esta acción.");
+                    break;
+                   }else {
+                    System.out.print("Ingrese la placa del carro: ");
                     String placa2= scan.next();
-                    System.out.print("Ingrese la marca del auto:");
+                    System.out.print("Ingrese la marca del carro: ");
                     String marca2= scan.next();
-                    System.out.print("Ingrese el color del auto:");
+                    System.out.print("Ingrese el color del carro: ");
                     String color2= scan.next();
-                    System.out.print("Ingrese el valor comercial del auto:");
+                    System.out.print("Ingrese el valor comercial del carro: ");
                     int valor= scan.nextInt();
-                    Vehiculo vehiculo = new Vehiculo(placa2,marca2,color2,valor);
-                    Sensor.sensores[espacio2][piso2]= new Sensor(1);
-                    Vehiculo.vehiculos[espacio2][piso2]=vehiculo;
+                    Vehiculo vehiculo = new Carro(placa2,marca2,color2,valor, valorCarros);
+                    Sensor.sensores[piso2][espacio2]= new Sensor(1);
+                    Vehiculo.vehiculos[piso2][espacio2]=vehiculo;
+                    System.out.println(Vehiculo.horaActual());
+                    break;
+                }            
+             }else if(numClase2 == 2){
+                  System.out.print("Ingrese el piso donde desea ubicar la moto: ");
+                  int piso2= scan.nextInt()-1;
+                  System.out.print("Ingrese el espacio donde desea ubicar la moto: ");
+                  int espacio2= scan.nextInt()-1;
+                   if((piso2 > pisos)||(espacio2 > espacios)){
+                    System.out.println("Valores no reconocidos, no se puede ejercer esta acción.");
+                    break;
+                   }
+                    else if(Sensor.sensores[piso2][espacio2].getEstado() != 0){
+                    System.out.println("Parqueadero ocupado, no se puede ejercer esta acción.");
+                    break;
+                   }else {
+                    System.out.print("Ingrese la placa de la moto: ");
+                    String placa2= scan.next();
+                    System.out.print("Ingrese la marca de la moto: ");
+                    String marca2= scan.next();
+                    System.out.print("Ingrese el color de la moto: ");
+                    String color2= scan.next();
+                    System.out.print("Ingrese el valor comercial de la moto: ");
+                    int valor= scan.nextInt();
+                    Vehiculo vehiculo = new Moto(placa2,marca2,color2,valor, valorMotos);
+                    Sensor.sensores[piso2][espacio2]= new Sensor(1);
+                    Vehiculo.vehiculos[piso2][espacio2]=vehiculo;
+                    System.out.println(Vehiculo.horaActual());
                     break;
                 }
-                
+             }else{
+                System.out.println("Valores no reconocidos, no se puede ejercer esta acción.");
+             }
+ 
                 case 4: 
                 System.out.println("La información de los vehiculos ingresados es: "+ "\n" +
                 "----------------------------------------------------------------" + "\n" + Vehiculo.toStringVehiculos());
@@ -108,15 +188,15 @@ public class Principal{
                 break;
  
                 case 6:
-                System.out.println("Ingrese el piso y el espacio del que desea conocer el estado: "+ "\n");
-                System.out.print("Piso:");
+                System.out.println("Ingrese el piso y el espacio del que desea conocer el estado: ");
+                System.out.print("Piso: ");
                 int piso3= scan.nextInt()-1;                
-                System.out.print("Espacio:");
+                System.out.print("Espacio: ");
                 int espacio3= scan.nextInt()-1;                
                 if((piso3 > pisos)||(espacio3 > espacios)){
                     System.out.println("Valores no reconocidos, no se puede ejercer esta acción.");
                 }else{
-                    System.out.println("El estado del sensor es: \n"+ Sensor.sensores[espacio3][piso3].toString());
+                    System.out.println("El estado del sensor es: \n"+ Sensor.sensores[piso3][espacio3].toString());
                 }
                 break;
  
@@ -129,7 +209,7 @@ public class Principal{
                 break;
  
                 case 8:
-                System.out.print("Ingrese el color de los vehiculos que desea obtener información:");
+                System.out.print("Ingrese el color de los vehiculos que desea obtener información: ");
                 String color= scan.next();
                 System.out.println(Vehiculo.VehiculosColor(color));
                 break;
@@ -140,7 +220,26 @@ public class Principal{
                 System.out.println("---------------------------------------------------------------------");
                 System.out.println(Vehiculo.toStringVehiculos(Vehiculo.valorOrdenado()));
                 break;
+ 
+                case 10:
+                System.out.println("Ingrese el piso y el espacio del que desea retirar el vehiculo: ");
+                System.out.print("Piso: ");
+                int piso4= scan.nextInt()-1;                
+                System.out.print("Espacio: ");
+                int espacio4= scan.nextInt()-1;                
+                if((piso4 > pisos)||(espacio4 > espacios)){
+                    System.out.println("Valores no reconocidos, no se puede ejercer esta acción.");
+                }else if(Sensor.sensores[piso4][espacio4].getEstado() == 0){
+                    System.out.println("No hay vehiculos en este espacio.");
+                }else{
+                    System.out.println(Vehiculo.salida(piso4,espacio4));
                 }
+                break;
+ 
+                case 11:
+ 
+                break;
+          }
             System.out.print(
             "†-----------------------------------------------------------------------------------------------------†\n"
             + "| COMANDO  0 | ⇒ |  Terminar ejecucion                                                               |\n"
@@ -162,6 +261,10 @@ public class Principal{
             + "| COMANDO  8 | ⇒ |  Presentar ordenadamente la informacion de los vehiculos con un color determinado |\n"
             + "†-----------------------------------------------------------------------------------------------------†\n"
             + "| COMANDO  9 | ⇒ |  Presentar la informacion de los vehiculos ordenados por su valor comercial       |\n"
+            + "†-----------------------------------------------------------------------------------------------------†\n"
+            + "| COMANDO 10 | ⇒ |  Retirar vehiculo de un espacio determinado                                       |\n"
+            + "†-----------------------------------------------------------------------------------------------------†\n"
+            + "| COMANDO 11 | ⇒ |  Exportar fichero con la informacion de los vehiculos ingresados en el sistema    |\n"
             + "†-----------------------------------------------------------------------------------------------------†\n"
             + "Accion: ");            
             num= scan.nextInt();

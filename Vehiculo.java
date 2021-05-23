@@ -164,10 +164,10 @@ public class Vehiculo{
         return LocalDateTime.now();
     } 
     public static String salida(int x, int y){
-        Vehiculo mov = Vehiculo.vehiculos[x-1][y-1];
-        long pago = Duration.between(horaActual(), mov.getIngreso()).toMinutes()*mov.getCobro();
-        mov = null;
-        Sensor.sensores[x-1][y-1].setEstado(0);
+        Vehiculo mov = Vehiculo.vehiculos[x][y];//variable para acortar sintaxis.
+        long pago = Duration.between(mov.getIngreso(),horaActual()).toMinutes()*(mov.getCobro()/60);
+        Vehiculo.vehiculos[x][y] = null;//liberar espacio
+        Sensor.sensores[x][y].setEstado(0);
         return "Total a pagar $"+pago;
     }
 }
