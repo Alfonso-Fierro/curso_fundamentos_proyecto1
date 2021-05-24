@@ -1,7 +1,7 @@
 import java.util.*;
 import java.io.*;
 public class Principal{
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException{
         Scanner scan = new Scanner(System.in);
         System.out.println("¡Bienvenido!");
         System.out.print("Ingrese la cantidad de pisos: ");
@@ -58,8 +58,7 @@ public class Principal{
  
                 case 2:
                 System.out.println("¿Qué vehiculo desea ingresar?");
-                System.out.println( "1. Carro");
-                System.out.print( "2. Moto ");
+                System.out.print( "1. Carro || 2. Moto : ");
                 int numClase = scan.nextInt();
              if(numClase == 1){                
                 System.out.print("Ingrese el piso donde desea ubicar el carro: ");
@@ -83,7 +82,7 @@ public class Principal{
                     Vehiculo vehiculo= new Carro(placa, marca, color, valorCarros);
                     Sensor.sensores[piso][espacio]= new Sensor(1);               
                     vehiculo.vehiculos[piso][espacio]=vehiculo;
-                    System.out.println(Vehiculo.horaActual());
+                    System.out.println(vehiculo.toString());;
                     break;
                    }
              }else if(numClase == 2){
@@ -108,22 +107,22 @@ public class Principal{
                     Vehiculo vehiculo = new Moto(placa, marca, color, valorMotos);
                     Sensor.sensores[piso][espacio]= new Sensor(1);               
                     vehiculo.vehiculos[piso][espacio]=vehiculo;
-                    System.out.println(Vehiculo.horaActual());
+                    System.out.println(vehiculo.toString());
                     break;
                 }
              }else{
                 System.out.println("Valores no reconocidos, no se puede ejercer esta acción.");
+                break;
              }
  
                 case 3:
                 System.out.println("¿Qué vehiculo desea ingresar?");
-                System.out.println( "1. Carro");
-                System.out.println( "2. Moto");
+                System.out.print( "1. Carro || 2. Moto : ");
                 int numClase2 = scan.nextInt();
              if(numClase2 == 1){                
-                System.out.print("Ingrese el piso donde desea ubicar el carro: ");
+                System.out.print("Ingrese el piso donde desea ubicar el carro: " );
                 int piso2= scan.nextInt()-1;
-                System.out.print("Ingrese el espacio donde desea ubicar el carro: ");
+                System.out.print("Ingrese el espacio donde desea ubicar el carro: " );
                 int espacio2= scan.nextInt()-1;
                    if((piso2 > pisos)||(espacio2 > espacios)){
                     System.out.println("Valores no reconocidos, no se puede ejercer esta acción.");
@@ -144,7 +143,7 @@ public class Principal{
                     Vehiculo vehiculo = new Carro(placa2,marca2,color2,valor, valorCarros);
                     Sensor.sensores[piso2][espacio2]= new Sensor(1);
                     Vehiculo.vehiculos[piso2][espacio2]=vehiculo;
-                    System.out.println(Vehiculo.horaActual());
+                    System.out.println(vehiculo.toString());;
                     break;
                 }            
              }else if(numClase2 == 2){
@@ -171,7 +170,7 @@ public class Principal{
                     Vehiculo vehiculo = new Moto(placa2,marca2,color2,valor, valorMotos);
                     Sensor.sensores[piso2][espacio2]= new Sensor(1);
                     Vehiculo.vehiculos[piso2][espacio2]=vehiculo;
-                    System.out.println(Vehiculo.horaActual());
+                    System.out.println(vehiculo.toString());;
                     break;
                 }
              }else{
@@ -237,7 +236,10 @@ public class Principal{
                 break;
  
                 case 11:
- 
+                PrintStream archivo = new PrintStream("C:\\Users\\ALFONSO FIERRO\\Desktop\\infoVehiculos.txt");
+                archivo.print(Vehiculo.toStringVehiculos());
+                System.out.print("El archivo se ha exportado correctamente \n");
+                archivo.close();
                 break;
           }
             System.out.print(

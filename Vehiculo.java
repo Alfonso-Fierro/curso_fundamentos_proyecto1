@@ -1,5 +1,6 @@
 import java.util.*;
 import java.time.*;
+import java.time.format.DateTimeFormatter;
 public class Vehiculo{   
     //Campos generales del programa
     public static Vehiculo[][] vehiculos; 
@@ -76,8 +77,13 @@ public class Vehiculo{
     public String toString(){
         String unitValue =
         " Placa: "+ this.getPlaca() + ", Marca: " + this.getMarca() + ", Color: " + this.getColor()
-        + ", Valor comercial: " + this.getValor() + ", Tipo de vehículo: " + this.getTipo() + "||"+"\n";
+        + ", Valor comercial: " + this.getValor() + ", Tipo de vehículo: " + this.getTipo() + ", Hora de ingreso: "
+        + toStringHora(this.getIngreso()) + "||"+"\n";
         return unitValue;            
+    }
+    public static String toStringHora(LocalDateTime ref){
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM-dd-YY h:mm a");
+        return dtf.format(ref);
     }
     public static String toStringVehiculos(Vehiculo[] ref){
         String fullInfo= "";
