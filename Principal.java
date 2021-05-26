@@ -4,9 +4,9 @@ public class Principal{
     public static void main(String[] args) throws FileNotFoundException{
         Scanner scan = new Scanner(System.in);
         System.out.println("¡Bienvenido!");
-        System.out.print("Ingrese la cantidad de pisos: ");
+        System.out.print("Ingrese la cantidad de pisos del edificio: ");
         int pisos= scan.nextInt();
-        System.out.print("Ingrese la cantidad de espacios: ");
+        System.out.print("Ingrese la cantidad de espacios para cada piso: ");
         int espacios= scan.nextInt();
         Vehiculo.vehiculos = new Vehiculo[espacios][pisos];
         Sensor.sensores = new Sensor[espacios][pisos];
@@ -208,7 +208,7 @@ public class Principal{
                 break;
  
                 case 8:
-                System.out.print("Ingrese el color de los vehiculos que desea obtener información: ");
+                System.out.print("Ingrese un color para obtener información de los vehiculos con este: ");
                 String color= scan.next();
                 System.out.println(Vehiculo.VehiculosColor(color));
                 break;
@@ -238,7 +238,7 @@ public class Principal{
                 case 11:
                 PrintStream archivo = new PrintStream("C:\\Users\\ALFONSO FIERRO\\Desktop\\infoVehiculos.txt");
                 archivo.print(Vehiculo.toStringVehiculos());
-                System.out.print("El archivo se ha exportado correctamente \n");
+                System.out.print("El archivo se ha exportado correctamente");
                 archivo.close();
                 break;
           }
